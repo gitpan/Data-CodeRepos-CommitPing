@@ -56,3 +56,7 @@ __END__
 ===
 --- input: dumy2.txt
 --- expected: lang/php/ARGF
+
+===
+--- input: userscripts1.txt
+--- expected: lang/javascript/userscripts/hatena.bookmark.button-search-now.user.js

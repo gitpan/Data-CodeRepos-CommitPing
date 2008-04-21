@@ -2,7 +2,7 @@ package Data::CodeRepos::CommitPing;
 
 use strict;
 use warnings;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Carp;
 use DateTime;
@@ -108,11 +108,14 @@ for my $proj (keys %PROJECT_BASE) {
 sub proj_lang {
     my($self, $file) = @_;
     my @list = @{ $file->{path_list} };
-    my $max = $list[2] ?
-        ($list[2] eq 'misc') ?
-            $list[3] ? 3 : 2
-            : 2
-        : scalar(@list) - 1;
+    my $max = scalar(@list) - 1;
+    if ($list[2]) {
+        if ($list[2] eq 'misc' || ($list[1] eq 'javascript' && $list[2] eq 'userscripts')) {
+            $max = $list[3] ? 3 : 2;
+        } else {
+            $max = 2;
+        }
+    }
     join '/', @list[0..$max];
 }
 

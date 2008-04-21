@@ -52,3 +52,7 @@ __END__
 ===
 --- input: dumy1.txt
 --- expected: lang/perl/misc/dumy.pl
+
+===
+--- input: dumy2.txt
+--- expected: lang/php/ARGF

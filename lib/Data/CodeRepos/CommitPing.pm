@@ -2,7 +2,7 @@ package Data::CodeRepos::CommitPing;
 
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Carp;
 use DateTime;
@@ -47,6 +47,7 @@ sub changes_base {
 
     my $changes_projs = {};
     for my $file (@{ $self->{files} }) {
+        next unless $file->{path_list}->[0];
         my $proj = 'proj_' . $file->{path_list}->[0];
         my $path = $self->$proj($file);
         $changes_projs->{$path}++;
